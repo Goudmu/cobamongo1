@@ -32,7 +32,7 @@ const CategoryPage = async ({params}:Props) => {
         border-red-500 sm:w-1/2 lg:w-1/3 p-4
         flex flex-col justify-between group
         even:bg-fuchsia-50' 
-        key={item.id} href={`/product/${item.id}`}>
+        key={item._id} href={`/product/${item._id}`}>
           {/* IMAGE CONTAINER */}
             {
               item.img && (
