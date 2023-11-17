@@ -9,7 +9,7 @@ const Featured = () => {
   useEffect(() => {
     const getData = async () => {
       let newfeaturedProducts: Product[];
-      await fetch("http://localhost:3000/api/products2", {
+      await fetch("https://cobamongo1-omega.vercel.app/api/products2", {
         cache : "no-store"
       }).then(res => res.json())
       .then(data => {
