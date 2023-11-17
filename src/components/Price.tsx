@@ -26,7 +26,7 @@ const Price = ({price, id, options} : Props) => {
         {/* OPTION CONTAINER */}
         <div className='flex gap-4' >
             {options?.map((option, index) => (
-                <button className=' min-w-[6rem] p-2 ring-1 ring-red-400 rounded-md' 
+                <button key={index} className=' min-w-[6rem] p-2 ring-1 ring-red-400 rounded-md' 
                 style={{
                     background: selected === index ? 
                     "rgb(248 113 113)" : 
