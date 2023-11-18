@@ -32,10 +32,6 @@ const Navbar = () => {
       <div className='hidden md:flex gap-4 items-center flex-1
       justify-end
       ' >
-        <div className='md:absolute top-3 right-2 lg:static flex item-center gap-2 cursor-pointer bg-orange-300 px-1 rounded-md' >
-          <Image src="/phone.png" alt='' width={20} height={20} />
-          <span>123 456 789</span>
-        </div>
         <UserLinks />
         <Carticon />
       </div>

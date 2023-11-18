@@ -1,45 +1,94 @@
 "use client"
+import { Product } from '@/types/type';
+import { useSession } from 'next-auth/react';
 import React, {useState, useEffect} from 'react'
 
-type Props = {
+type typeThisProduct = {
+    _id: number;
+    cat: String;
+    title: string;
+    desc?: string;
+    img?: string;
     price: number;
-    id: number;
-    options?: {
-        title: string;
-        additionalPrice: number;
-    }[];
+    qty: number
 }
 
 
-const Price = ({price, id, options} : Props) => {
-    const [total, setTotal] = useState(price);
+const Price = ({ product }: { product: Product }) => {
+    const [total, setTotal] = useState(product.price);
     const [qty, setqty] = useState(1);
-    const [selected, setselected] = useState(0);
+    const [thisProduct, setThisProduct] = useState<typeThisProduct>()
+    const session = useSession()
 
     useEffect(() => {
-        setTotal(qty * (options ? price + options[selected].additionalPrice : price ))
-    }, [qty, selected, options, price])
+        // console.log(session)
+        setThisProduct({
+            _id:product._id,
+            cat: product.cat,
+            title: product.title,
+            desc: product.desc,
+            img: product.img,
+            price: product.price,
+            qty
+        })
+    },[])
+
+    useEffect(() => {
+        setTotal(qty * product.price)
+        setThisProduct({
+            _id:product._id,
+            cat: product.cat,
+            title: product.title,
+            desc: product.desc,
+            img: product.img,
+            price: product.price,
+            qty
+        })
+    }, [qty, product.price])
+
+    const addHandler = async () => {
+        await fetch(`http://localhost:3000/api/singleCart?gmail=${session.data?.user?.email}`, {
+            cache: "no-store"
+        }).then(res => {
+            return res.json()
+        })
+        .then(async (data) => {
+            if(data.cartss != null){
+                let newCarts:typeThisProduct[] = data.cartss.productsSchema
+                let exist = false
+                for (let index = 0; index < data.cartss.productsSchema.length; index++) {
+                    if(data.cartss.productsSchema[index]._id == product._id){
+                        newCarts[index].qty += qty
+                        exist= true
+                    }
+                }
+                if(exist == false && thisProduct != undefined){
+                    newCarts.push(thisProduct)
+                }
+                
+                await fetch("http://localhost:3000/api/cart", {
+                    method: "PUT",
+                    body: JSON.stringify({
+                        gmail: session.data?.user?.email,
+                        productsSchema: newCarts
+                    })
+                })
+            } else {
+                fetch("http://localhost:3000/api/cart", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        gmail: session.data?.user?.email,
+                        productsSchema: thisProduct
+                    })
+                }).then(res => console.log(res.json()))
+            }
+        })
+    }
 
   return (
     <div className='flex flex-col gap-4' >
         <h2 className='text-2xl font-semibold' >${total.toFixed(2)}</h2>
-        {/* OPTION CONTAINER */}
-        <div className='flex gap-4' >
-            {options?.map((option, index) => (
-                <button key={index} className=' min-w-[6rem] p-2 ring-1 ring-red-400 rounded-md' 
-                style={{
-                    background: selected === index ? 
-                    "rgb(248 113 113)" : 
-                    "white",
-                    color: selected === index ? "white" : "red"
-                }}
-                onClick={() => setselected(index)}
-                >{option.title}</button>
-            ))}
-        </div>
-        {/* QTY AND ADD BUTTON CONTAINER */}
         <div className='flex justify-between items-center' >
-            {/* QTY */}
             <div className='flex justify-between w-full p-3 ring-1 ring-red-400' >
                 <span>Qty</span>
                 <div className='flex flex-row gap-5 items-center' >
@@ -48,8 +97,7 @@ const Price = ({price, id, options} : Props) => {
                     <button onClick={() => setqty(prev => prev + 1)}>{'>'}</button>
                 </div>
             </div>
-            {/* CART BUTTON */}
-            <button className='uppercase w-56 bg-red-500 text-white p-3 ring-1 ring-red-400' >Add To Cart</button>
+            <button onClick={addHandler} type='button' className='uppercase w-56 bg-red-500 text-white p-3 ring-1 ring-red-400' >Add To Cart</button>
         </div>
     </div>
   )

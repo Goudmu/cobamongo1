@@ -1,21 +1,22 @@
-import { prisma } from "@/utils/connect"
-import { NextResponse } from "next/server"
+import connectMongoDB from "@/libs/mongodb"
+import {cats} from "@/models/models"
+import { NextRequest, NextResponse } from "next/server"
 
-
-// FETCH ALL CATEGORIES
+export const POST = async (request : NextRequest) => {
+    const {title, desc, img, color, cat, productsSchema} = await request.json()
+    await connectMongoDB()
+    await cats.create({title, desc, img, color, productsSchema, cat})
+    return NextResponse.json({message: "Cat Created"}, {status:201})
+}
 export const GET = async () => {
-    try{
-        const categories = await prisma.category.findMany()
-        return new NextResponse(JSON.stringify(
-            categories), 
-            {status: 200})
-    }catch(err){
-        
-        return new NextResponse(JSON.stringify(
-            {message:"Something went wrong"}), {status: 500})
-    }
+    await connectMongoDB()
+    const catGet = await cats.find()
+    return NextResponse.json({catGet})
 }
 
-export const POST = () => {
-    return new NextResponse("Hello", {status: 200})
+export const DELETE = async(request:NextRequest) => {
+    const id = request.nextUrl.searchParams.get("id");
+    await connectMongoDB()
+    await cats.findByIdAndDelete(id)
+    return NextResponse.json({message:"Cat has deleted"}, {status:200})
 }

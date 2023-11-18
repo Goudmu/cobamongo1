@@ -5,6 +5,7 @@ import Notification from '@/components/Notification'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import AuthProvider from '@/components/AuthProvider'
+import { EdgeStoreProvider } from './lib/edgestore'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,12 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>
-          <Notification />
-          <Navbar />
-          {children}
-          <Footer />
-        </AuthProvider>
+        <EdgeStoreProvider>
+          <AuthProvider>
+            <Notification />
+            <Navbar />
+            {children}
+            <Footer />
+          </AuthProvider>
+        </EdgeStoreProvider>
         </body>
     </html>
   )

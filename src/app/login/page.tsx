@@ -2,21 +2,72 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import {useSession, signIn, signOut } from "next-auth/react"
 import { useRouter } from "next/navigation";
+import { User } from "@/types/type";
+
+let alreadyFetch = false;
 
 const LoginPage = () => {
-
-  const {data, status} = useSession();
+  const session = useSession();
   const router = useRouter();
-
-  if(status === "loading"){
-    return <p>Loading...</p>
-  }
-  if(status === "authenticated"){
-    router.push("/")
-  }
+  
+  // if(status === "loading"){
+  //   return <p>Loading...</p>
+  // }
+  // if(status === "authenticated"){
+  //   router.push("/")
+  // }
+  
+  useEffect(() => {
+    // console.log(session.data)
+    // if(session.status === "authenticated"){
+    //   router.push('/')
+    // }
+    const getData = async () => {
+      await fetch("http://localhost:3000/api/user", {
+        cache: "no-store"
+      }).then(res => res.json())
+      .then(async (data) => {
+        console.log(data)
+        if(session.data != undefined){
+          if(data.userss.length == 0){
+            if(alreadyFetch == false){
+              alreadyFetch = true;
+              await fetch("http://localhost:3000/api/user", {
+                method: "POST",
+                body: JSON.stringify({
+                  username: session.data?.user?.name,
+                  gmail: session.data?.user?.email,
+                })
+              })
+            }
+          } else {
+            let exist = false
+            data.userss.map((e:User) => {
+              if(e.gmail == session.data.user?.email){
+                exist = true
+              }
+            })
+            if(exist == false){
+              if(alreadyFetch == false){
+                alreadyFetch = true;
+                await fetch("http://localhost:3000/api/user", {
+                method: "POST",
+                body: JSON.stringify({
+                  username: session.data?.user?.name,
+                  gmail: session.data?.user?.email,
+                })
+                })
+              }
+            }
+          }
+        }
+      })
+    }
+    getData()
+  },[session])
 
   return (
     <div className="p-4 h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex items-center justify-center">
@@ -33,7 +84,6 @@ const LoginPage = () => {
           <button className="
           flex gap-4 p-4 ring-1 ring-orange-100 rounded-md"
           onClick={()=>signIn("google")}
-          
           >
             <Image
               src="/google.png"
@@ -44,19 +94,6 @@ const LoginPage = () => {
             />
             <span>Sign in with Google</span>
           </button>
-          <button className="flex gap-4 p-4 ring-1 ring-blue-100 rounded-md">
-            <Image
-              src="/facebook.png"
-              alt=""
-              width={20}
-              height={20}
-              className="object-contain"
-            />
-            <span>Sign in with Facebook</span>
-          </button>
-          <p className="text-sm">
-            Have a problem?<Link className="underline" href="/"> Contact us</Link>
-          </p>
         </div>
       </div>
     </div>

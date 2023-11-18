@@ -9,7 +9,7 @@ const Carticon = () => {
             <Image src="/cart.png" alt='' fill />
         </div>
         <span>
-            Cart {3}
+            Cart
         </span>
     </Link>
   )
