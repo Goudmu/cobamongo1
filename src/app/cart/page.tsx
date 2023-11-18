@@ -23,7 +23,7 @@ const CartPage = () => {
 
   useEffect(() => {
     const getData = async () => {
-      await fetch(`https://cobamongo1-omega.vercel.app/singleCart?gmail=${session.data?.user?.email}`, {
+      await fetch(`https://cobamongo1-omega.vercel.app/api/singleCart?gmail=${session.data?.user?.email}`, {
             cache: "no-store"
       }).then(res => {
           return res.json()
@@ -51,7 +51,7 @@ const CartPage = () => {
         newCartsProduct.push(e)
       }
     })
-    await fetch("https://cobamongo1-omega.vercel.app/cart", {
+    await fetch("https://cobamongo1-omega.vercel.app/api/cart", {
         method: "PUT",
         body: JSON.stringify({
             gmail: session.data?.user?.email,
@@ -62,7 +62,7 @@ const CartPage = () => {
   }
 
   const checkOutHandler =async () => {
-    await fetch("https://cobamongo1-omega.vercel.app/order", {
+    await fetch("https://cobamongo1-omega.vercel.app/api/order", {
         method: "POST",
         body: JSON.stringify({
             gmail: session.data?.user?.email,

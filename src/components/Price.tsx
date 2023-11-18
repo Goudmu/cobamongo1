@@ -47,7 +47,7 @@ const Price = ({ product }: { product: Product }) => {
     }, [qty, product.price])
 
     const addHandler = async () => {
-        await fetch(`https://cobamongo1-omega.vercel.app/singleCart?gmail=${session.data?.user?.email}`, {
+        await fetch(`https://cobamongo1-omega.vercel.app/api/singleCart?gmail=${session.data?.user?.email}`, {
             cache: "no-store"
         }).then(res => {
             return res.json()
@@ -66,7 +66,7 @@ const Price = ({ product }: { product: Product }) => {
                     newCarts.push(thisProduct)
                 }
                 
-                await fetch("https://cobamongo1-omega.vercel.app/cart", {
+                await fetch("https://cobamongo1-omega.vercel.app/api/cart", {
                     method: "PUT",
                     body: JSON.stringify({
                         gmail: session.data?.user?.email,
@@ -74,7 +74,7 @@ const Price = ({ product }: { product: Product }) => {
                     })
                 })
             } else {
-                fetch("https://cobamongo1-omega.vercel.app/cart", {
+                fetch("https://cobamongo1-omega.vercel.app/api/cart", {
                     method: "POST",
                     body: JSON.stringify({
                         gmail: session.data?.user?.email,
