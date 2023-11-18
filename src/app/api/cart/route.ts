@@ -38,3 +38,15 @@ export const PUT =async (request:NextRequest) => {
         return NextResponse.json({message:"Something went wrong"}, {status:400})
     }
 }
+
+export const DELETE =async (request:NextRequest) => {
+    try {
+        const{gmail} = await request.json()
+        await connectMongoDB()
+        const cartss = await carts2.findOneAndDelete({gmail:gmail})
+        return NextResponse.json({cartss}, {status:200})
+    } catch (error) {
+        console.log(error)
+        return NextResponse.json({message:"Something went wrong"}, {status:400})
+    }
+}

@@ -70,9 +70,17 @@ const CartPage = () => {
             totalPrice: totalPrice,
             totalQty: totalQty
         })
-    }).then(() => router.push('/orders'))
+    }).then(async () => {
+      await fetch("https://cobamongo1-omega.vercel.app/api/cart", {
+        method: "DELETE",
+        body: JSON.stringify({
+            gmail: session.data?.user?.email
+        })
+      }).then(() => {
+        router.push('/orders')
+      })
+    })
   }
-
 
   return (
     <div className='h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col text-red-500 lg:flex-row ' >
