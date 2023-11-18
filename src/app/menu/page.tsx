@@ -9,7 +9,7 @@ const MenuPage = () => {
 
   useEffect(() => {
     const getData = async () => {
-      await fetch("http://localhost:3000/api/categories", {
+      await fetch("https://cobamongo1-omega.vercel.app/api/categories", {
         cache : "no-store"
       }).then(res => res.json())
       .then(data => {

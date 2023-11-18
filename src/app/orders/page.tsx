@@ -29,7 +29,7 @@ const Orders = () => {
 
   useEffect(() => {
     const getData = async () => {
-      await fetch("http://localhost:3000/api/order", {
+      await fetch("https://cobamongo1-omega.vercel.app/api/order", {
         cache:"no-store"
       }).then(res => res.json())
       .then(data => {
@@ -38,7 +38,7 @@ const Orders = () => {
       })
     }
     const getUser =async () => {
-      await fetch("http://localhost:3000/api/user", {
+      await fetch("https://cobamongo1-omega.vercel.app/api/user", {
         cache:"no-store"
       }).then(res => res.json())
       .then(data => {
@@ -58,7 +58,7 @@ const Orders = () => {
     const form = e.target as HTMLSelectElement;
     const status = form.value
     console.log(status)
-    await fetch("http://localhost:3000/api/order", {
+    await fetch("https://cobamongo1-omega.vercel.app/api/order", {
         method: "PUT",
         body: JSON.stringify({
           gmail:session.data?.user?.email,

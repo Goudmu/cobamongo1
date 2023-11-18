@@ -26,7 +26,7 @@ const LoginPage = () => {
     //   router.push('/')
     // }
     const getData = async () => {
-      await fetch("http://localhost:3000/api/user", {
+      await fetch("https://cobamongo1-omega.vercel.app/api/user", {
         cache: "no-store"
       }).then(res => res.json())
       .then(async (data) => {
@@ -35,7 +35,7 @@ const LoginPage = () => {
           if(data.userss.length == 0){
             if(alreadyFetch == false){
               alreadyFetch = true;
-              await fetch("http://localhost:3000/api/user", {
+              await fetch("https://cobamongo1-omega.vercel.app/api/user", {
                 method: "POST",
                 body: JSON.stringify({
                   username: session.data?.user?.name,
@@ -53,7 +53,7 @@ const LoginPage = () => {
             if(exist == false){
               if(alreadyFetch == false){
                 alreadyFetch = true;
-                await fetch("http://localhost:3000/api/user", {
+                await fetch("https://cobamongo1-omega.vercel.app/api/user", {
                 method: "POST",
                 body: JSON.stringify({
                   username: session.data?.user?.name,
