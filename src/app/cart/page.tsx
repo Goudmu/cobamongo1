@@ -3,6 +3,8 @@ import { useSession } from 'next-auth/react';
 import Image from 'next/image'
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify';
+
 
 type typeThisProduct = {
   _id: number;
@@ -32,7 +34,7 @@ const CartPage = () => {
           let newTotalPrice = 0
           let newTotalQty = 0
           data.cartss.productsSchema.map((e:typeThisProduct) => {
-            newTotalPrice += e.price + e.qty;
+            newTotalPrice += e.price * e.qty;
             newTotalQty += e.qty
           })
           setTotalPrice(newTotalPrice)
@@ -42,7 +44,7 @@ const CartPage = () => {
       })
     }
     getData()
-  },[session])
+  },[session, totalPrice, totalQty])
 
   const removeHandler = async (id:number) => {
     let newCartsProduct:typeThisProduct[] = [];
@@ -59,6 +61,7 @@ const CartPage = () => {
         })
     })
     setCartProducts(newCartsProduct)
+    toast.success("Procut has been deleted")
   }
 
   const checkOutHandler =async () => {
@@ -77,6 +80,7 @@ const CartPage = () => {
             gmail: session.data?.user?.email
         })
       }).then(() => {
+        toast.success("Order Success")
         router.push('/orders')
       })
     })

@@ -2,6 +2,7 @@
 import { Product } from '@/types/type';
 import { useSession } from 'next-auth/react';
 import React, {useState, useEffect} from 'react'
+import { toast } from 'react-toastify';
 
 type typeThisProduct = {
     _id: number;
@@ -72,7 +73,7 @@ const Price = ({ product }: { product: Product }) => {
                         gmail: session.data?.user?.email,
                         productsSchema: newCarts
                     })
-                })
+                }).then(() => toast.success("The Product has been added"))
             } else {
                 fetch("https://cobamongo1-omega.vercel.app/api/cart", {
                     method: "POST",
@@ -80,7 +81,7 @@ const Price = ({ product }: { product: Product }) => {
                         gmail: session.data?.user?.email,
                         productsSchema: thisProduct
                     })
-                }).then(res => console.log(res.json()))
+                }).then(() => toast.success("The Product has been added"))
             }
         })
     }

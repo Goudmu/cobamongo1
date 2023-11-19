@@ -34,7 +34,6 @@ const Orders = () => {
       }).then(res => res.json())
       .then(data => {
         setOrders(data.orderss)
-        console.log(data.orderss)
       })
     }
     const getUser =async () => {
@@ -57,14 +56,13 @@ const Orders = () => {
     e.preventDefault();
     const form = e.target as HTMLSelectElement;
     const status = form.value
-    console.log(status)
     await fetch("https://cobamongo1-omega.vercel.app/api/order", {
         method: "PUT",
         body: JSON.stringify({
-          gmail:session.data?.user?.email,
+          id:id,
           status:status
         })
-      }).then(res => setstatusOrder(!statusOrder))
+      }).then(() => setstatusOrder(!statusOrder))
   }
   
   
@@ -84,7 +82,6 @@ const Orders = () => {
                     : "tracking-widertext-red-800 bg bg-red-200"
                     } rounded-lg bg-opacity-30`}>{item.status}</div>
                     <div className="flex flex-row">
-                      <div>Change Status ?</div>
                       <select name="changeStatus" id="changeStatus" onChange={e => 
                       {
                         handleUpdate(e, item._id)
@@ -96,6 +93,7 @@ const Orders = () => {
                       </select>
                     </div>
                   </div>
+                  <span>{item.gmail}</span>
                   {
                     item.productsSchema.map((e, index) => {
                       if(item.productsSchema.length == 1){
@@ -144,6 +142,7 @@ const Orders = () => {
                       : "tracking-widertext-red-800 bg bg-red-200"
                       } rounded-lg bg-opacity-30`}>{item.status}</div>
                     </div>
+                    <span>{item.gmail}</span>
                     {
                       item.productsSchema.map((e, index) => {
                         if(item.productsSchema.length == 1){

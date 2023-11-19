@@ -13,18 +13,13 @@ const LoginPage = () => {
   const session = useSession();
   const router = useRouter();
   
-  // if(status === "loading"){
-  //   return <p>Loading...</p>
-  // }
-  // if(status === "authenticated"){
-  //   router.push("/")
-  // }
+  useEffect(() => {
+    if(session.status === "authenticated"){
+      router.push("/")
+    }
+  },[])
   
   useEffect(() => {
-    // console.log(session.data)
-    // if(session.status === "authenticated"){
-    //   router.push('/')
-    // }
     const getData = async () => {
       await fetch("https://cobamongo1-omega.vercel.app/api/user", {
         cache: "no-store"
@@ -75,7 +70,7 @@ const LoginPage = () => {
       <div className=" h-full shadow-2xl rounded-md flex flex-col md:flex-row md:h-[70%] md:w-full lg:w-[60%] 2xl:w-1/2">
         {/* IMAGE CONTAINER */}
         <div className="relative h-1/3 w-full md:h-full md:w-1/2">
-          <Image src="/loginBg.png" alt="" fill className="object-cover"/>
+          <Image src="/loginBg.png" alt="" fill className="object-cover" sizes='100%' priority={true}/>
         </div>
         {/* FORM CONTAINER */}
         <div className="p-10 flex flex-col gap-8 md:w-1/2">

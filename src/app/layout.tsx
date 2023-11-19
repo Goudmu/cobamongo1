@@ -6,6 +6,9 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import AuthProvider from '@/components/AuthProvider'
 import { EdgeStoreProvider } from './lib/edgestore'
+import AuthLoading from '@/components/AuthLoading'
+import { ToastContainer } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,10 +27,13 @@ export default function RootLayout({
       <body className={inter.className}>
         <EdgeStoreProvider>
           <AuthProvider>
-            <Notification />
-            <Navbar />
-            {children}
-            <Footer />
+            <AuthLoading>
+              <Notification />
+              <Navbar />
+              {children}
+              <Footer />
+              <ToastContainer position='bottom-right' theme='dark' autoClose={1500} />
+            </AuthLoading>
           </AuthProvider>
         </EdgeStoreProvider>
         </body>

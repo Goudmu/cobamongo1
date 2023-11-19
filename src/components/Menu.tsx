@@ -2,21 +2,26 @@
 
 import Image from 'next/image'
 import Link from 'next/link';
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Carticon from './Carticon';
+import {useSession, signOut} from "next-auth/react"
 
 const links = [
   {id: 1, title: "Home Page", url: "/"},
-  {id: 2, title: "Menu", url: "/"},
-  {id: 3, title: "Working Hours", url: "/"},
-  {id: 4, title: "Contact", url: "/"},
+  {id: 2, title: "Menu", url: "/menu"},
 ]
 
 const Menu = () => {
   const [open, setOpen] = useState(false);
+  const [user, setuser] = useState(false);
+  const session = useSession()
 
+  useEffect(() => {
+    if(session.status !== "unauthenticated"){
+      setuser(true)
+    }
+  },[session])
   //TEMPORARY
-  const user = false
   return (
     <div>
         {
@@ -40,8 +45,12 @@ const Menu = () => {
           {!user
           ? <Link href="/login" onClick={() => setOpen(false)}> Login
           </Link>
-          : <Link href="/orders" onClick={() => setOpen(false)}> Orders
-          </Link>
+          : 
+          <div className='flex flex-col gap-8 items-center text-center justify-center' >
+            <Link href="/orders" onClick={() => setOpen(false)}> Orders
+            </Link>
+            <button type='button' onClick={() => signOut()} >LOG OUT</button>
+          </div> 
           }
           <Link href="/cart" onClick={() => setOpen(false)} >
             <Carticon />

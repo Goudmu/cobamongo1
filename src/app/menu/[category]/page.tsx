@@ -40,7 +40,7 @@ const CategoryPage = () => {
               item.img && (
                 <div className='relative h-[80%]' >
                   <Image src={item.img} alt='' fill
-                  className='object-contain' />
+                  className='object-contain' sizes='100%' priority={true} />
                 </div>
               )
             }

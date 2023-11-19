@@ -26,7 +26,7 @@ const Featured = () => {
             <div key={item._id} className='w-screen md:w-[50vw] xl:w-[33vw] h-[60vh] xl:h[90vh] flex flex-col items-center justify-around p-4 hover:bg-fuchsia-50 transition-all duration-150 ' >
             { item.img && (
               <div className='relative flex-1 w-full hover:rotate-[30deg] transition-all duration-500 '>
-                <Image src={item.img} alt='' fill className='object-contain' />
+                <Image src={item.img} alt='' fill className='object-contain' sizes='100%' priority={true} />
               </div>
             )}
             <div className='flex-1 flex flex-col gap-4 items-center text-center justify-center' >

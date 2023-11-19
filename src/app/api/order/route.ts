@@ -27,9 +27,9 @@ export const GET =async () => {
 
 export const PUT =async (request:NextRequest) => {
     try {
-        const{status,gmail} = await request.json()
+        const{status,id} = await request.json()
         await connectMongoDB()
-        const orderss = await orders2.findOneAndUpdate({gmail:gmail},{
+        const orderss = await orders2.findByIdAndUpdate(id,{
             status:status
         },{new:true})
         return NextResponse.json({orderss}, {status:200})
