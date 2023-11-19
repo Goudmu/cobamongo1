@@ -68,7 +68,7 @@ const Orders = () => {
   
   if(isAdmin){
     return(
-      <div className="p-5 h-screen bg-gray-100" >
+      <div className="p-5 bg-gray-100" >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {
               orders && orders.map((item: typeThisOrder) => (
@@ -126,7 +126,7 @@ const Orders = () => {
     )
   } else{
     return (
-      <div className="p-5 h-screen bg-gray-100" >
+      <div className="p-5 bg-gray-100" >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         {
             orders.map((item: typeThisOrder) => {

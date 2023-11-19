@@ -1,10 +1,12 @@
 "use client"
 import { Product } from '@/types/type'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 const Featured = () => {
   const [featuredProducts, setfeaturedProducts] = useState<Product[]>([]);
+  const router = useRouter()
 
   useEffect(() => {
     const getData = async () => {
@@ -33,7 +35,7 @@ const Featured = () => {
               <h1 className='text-xl xl:text-2xl 2xl:text-3xl font-bold uppercase ' >{item.title}</h1>
               <p className='p-4 2xl:p-8 '>{item.desc}</p>
               <span className='text-xl font-bold' >${item.price}</span>
-              <button className='bg-red-500 text-white p-2 rounded-md' >ADD TO CART</button>
+              <button className='bg-red-500 text-white p-2 rounded-md' onClick={() => router.push(`/product/${item._id}`)} >ADD TO CART</button>
             </div>
           </div>
           ))
