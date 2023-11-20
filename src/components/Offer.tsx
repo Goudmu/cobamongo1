@@ -17,7 +17,7 @@ const Offer = () => {
       </div>
       {/* IMAGE CONTAINER */}
       <div className='flex-1 w-full relative md:h-full bg-[#F1F1F1]' >
-        <Image src="/offer.jpg" alt='' fill className='object-contain' sizes='100%' />
+        <Image src="https://files.edgestore.dev/4rxoqm0mha5qllby/myPublicImages/_public/c8bc7e15-31de-4062-b2ed-03f12b6ceafc.jpg" alt='' fill className='object-contain' sizes='100%' />
       </div>
     </div>
   )

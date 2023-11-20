@@ -74,6 +74,7 @@ const AddPage = () => {
   };
 
   const uploadImage = async () => {
+    console.log("asd")
     setIsUploading(true)
     if(file) {
       await edgestore.myPublicImages.upload({file}).then((res) => {
@@ -121,7 +122,7 @@ const AddPage = () => {
                   <div>
                     <Image src={imageShow} alt="preview" fill />
                     <div className="absolute right-0 hover:cursor-pointer" onClick={removeImage} >
-                      <span>Change Image</span>
+                      <span>X</span>
                     </div>
                   </div>
                 ) : (
@@ -137,6 +138,7 @@ const AddPage = () => {
                   </label>
                 ) }
               </div>
+              <button type="button" onClick={uploadImage}>Upload Image(temporary)</button>
           </div> 
         </div>
         <div className="w-full flex flex-col gap-2 ">
