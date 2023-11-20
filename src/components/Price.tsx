@@ -48,7 +48,9 @@ const Price = ({ product }: { product: Product }) => {
     }, [qty, product.price])
 
     const addHandler = async () => {
-        try {
+        if(session.status === "unauthenticated"){
+            toast.error("You need to login frist")
+        } else {
             await fetch(`https://cobamongo1-omega.vercel.app/api/singleCart?gmail=${session.data?.user?.email}`, {
                 cache: "no-store"
             }).then(res => {
@@ -85,8 +87,6 @@ const Price = ({ product }: { product: Product }) => {
                     }).then(() => toast.success("The Product has been added"))
                 }
             })
-        } catch (error) {
-            toast.error("You need to login frist")
         }
     }
 
