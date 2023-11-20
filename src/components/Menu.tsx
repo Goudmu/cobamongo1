@@ -52,8 +52,8 @@ const Menu = () => {
             <button type='button' onClick={() => signOut()} >LOG OUT</button>
           </div> 
           }
-          <Link href="/cart" onClick={() => setOpen(false)} >
-            <Carticon />
+          <Link href="/aboutUs" onClick={() => setOpen(false)} >
+            About Us
           </Link>
         </div>}
     </div>

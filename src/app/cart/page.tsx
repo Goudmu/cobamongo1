@@ -87,7 +87,7 @@ const CartPage = () => {
   }
 
   return (
-    <div className='h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col text-red-500 lg:flex-row ' >
+    <div className='h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col text-black lg:flex-row bg-[#F1F1F1] ' >
       {/* PRODUCT CONTAINER */}
       <div className='flex-1 p-4 flex flex-col justify-center lg:h-full lg:w-2/3 2xl:w-1/2 lg:px-20 xl:px-40 overflow-scroll ' >
         {/* ITEM */}
@@ -102,8 +102,8 @@ const CartPage = () => {
               <div>
                 <h1 className='uppercase text-xl font-bold' >{e.title} ({e.qty} Pcs)</h1>
               </div>
-              <h2 className='font-bold' >${e.price}</h2>
-              <span className='cursor-pointer ml-2' onClick={()=> removeHandler(e._id)} >X</span>
+              <h2 className='font-bold text-xl' >${e.price}</h2>
+              <span className='cursor-pointer ml-2 text-xl' onClick={()=> removeHandler(e._id)} >X</span>
             </div>
           ))
         }
@@ -127,8 +127,8 @@ const CartPage = () => {
           <span>Total (Include Tax)</span>
           <span className='font-bold'>${totalPrice}</span>
         </div>
-        <button className='bg-red-500 w-1/2 
-        text-white p-3 rounded-md
+        <button className='bg-[#04979e] text-white w-1/2 
+         p-3 rounded-md
         self-end' type='button' onClick={checkOutHandler} >
           Check Out
         </button>

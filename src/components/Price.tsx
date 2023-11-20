@@ -90,7 +90,7 @@ const Price = ({ product }: { product: Product }) => {
     <div className='flex flex-col gap-4' >
         <h2 className='text-2xl font-semibold' >${total.toFixed(2)}</h2>
         <div className='flex justify-between items-center' >
-            <div className='flex justify-between w-full p-3 ring-1 ring-red-400' >
+            <div className='flex justify-between w-full p-3 ring-1 ring-[#04979e]' >
                 <span>Qty</span>
                 <div className='flex flex-row gap-5 items-center' >
                     <button onClick={() => setqty(prev => prev > 1 ? prev - 1: prev )}>{'<'}</button>
@@ -98,7 +98,7 @@ const Price = ({ product }: { product: Product }) => {
                     <button onClick={() => setqty(prev => prev + 1)}>{'>'}</button>
                 </div>
             </div>
-            <button onClick={addHandler} type='button' className='uppercase w-56 bg-red-500 text-white p-3 ring-1 ring-red-400' >Add To Cart</button>
+            <button onClick={addHandler} type='button' className='uppercase w-56 bg-[#04979e] text-white p-3 ring-1 ring-[#04979e]' >Add To Cart</button>
         </div>
     </div>
   )

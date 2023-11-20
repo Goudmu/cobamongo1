@@ -27,14 +27,14 @@ const CategoryPage = () => {
   },[])
 
   return (
-    <div className='flex flex-wrap text-red-500' >
+    <div className='flex flex-wrap text-[#04979e]' >
       {catPage.map(item => (
         <Link 
-        className='
+        className=' 
         w-full h-[60vh] border-r-2 border-b-2 
-        border-red-500 sm:w-1/2 lg:w-1/3 p-4
+        border-cyan-500 sm:w-1/2 lg:w-1/3 p-4
         flex flex-col justify-between group
-        even:bg-fuchsia-50' 
+        even:bg-[#F1F1F1]' 
         key={item._id} href={`/product/${item._id}`}>
             {
               item.img && (
@@ -49,7 +49,7 @@ const CategoryPage = () => {
           ' >
             <h1 className='text-xl uppercase p-2' >{item.title}</h1>
             <h2 className='text-xl group-hover:hidden' >${item.price}</h2>
-            <button className='hidden group-hover:block uppercase bg-red-500 
+            <button className='hidden group-hover:block uppercase bg-[#04979e]
             text-white p-2 rounded-lg text-sm'>
               Add to Cart
               </button>
