@@ -48,42 +48,46 @@ const Price = ({ product }: { product: Product }) => {
     }, [qty, product.price])
 
     const addHandler = async () => {
-        await fetch(`https://cobamongo1-omega.vercel.app/api/singleCart?gmail=${session.data?.user?.email}`, {
-            cache: "no-store"
-        }).then(res => {
-            return res.json()
-        })
-        .then(async (data) => {
-            if(data.cartss != null){
-                let newCarts:typeThisProduct[] = data.cartss.productsSchema
-                let exist = false
-                for (let index = 0; index < data.cartss.productsSchema.length; index++) {
-                    if(data.cartss.productsSchema[index]._id == product._id){
-                        newCarts[index].qty += qty
-                        exist= true
+        try {
+            await fetch(`https://cobamongo1-omega.vercel.app/api/singleCart?gmail=${session.data?.user?.email}`, {
+                cache: "no-store"
+            }).then(res => {
+                return res.json()
+            })
+            .then(async (data) => {
+                if(data.cartss != null){
+                    let newCarts:typeThisProduct[] = data.cartss.productsSchema
+                    let exist = false
+                    for (let index = 0; index < data.cartss.productsSchema.length; index++) {
+                        if(data.cartss.productsSchema[index]._id == product._id){
+                            newCarts[index].qty += qty
+                            exist= true
+                        }
                     }
+                    if(exist == false && thisProduct != undefined){
+                        newCarts.push(thisProduct)
+                    }
+                    
+                    await fetch("https://cobamongo1-omega.vercel.app/api/cart", {
+                        method: "PUT",
+                        body: JSON.stringify({
+                            gmail: session.data?.user?.email,
+                            productsSchema: newCarts
+                        })
+                    }).then(() => toast.success("The Product has been added"))
+                } else {
+                    fetch("https://cobamongo1-omega.vercel.app/api/cart", {
+                        method: "POST",
+                        body: JSON.stringify({
+                            gmail: session.data?.user?.email,
+                            productsSchema: thisProduct
+                        })
+                    }).then(() => toast.success("The Product has been added"))
                 }
-                if(exist == false && thisProduct != undefined){
-                    newCarts.push(thisProduct)
-                }
-                
-                await fetch("https://cobamongo1-omega.vercel.app/api/cart", {
-                    method: "PUT",
-                    body: JSON.stringify({
-                        gmail: session.data?.user?.email,
-                        productsSchema: newCarts
-                    })
-                }).then(() => toast.success("The Product has been added"))
-            } else {
-                fetch("https://cobamongo1-omega.vercel.app/api/cart", {
-                    method: "POST",
-                    body: JSON.stringify({
-                        gmail: session.data?.user?.email,
-                        productsSchema: thisProduct
-                    })
-                }).then(() => toast.success("The Product has been added"))
-            }
-        })
+            })
+        } catch (error) {
+            toast.error("You need to login frist")
+        }
     }
 
   return (
