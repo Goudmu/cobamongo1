@@ -8,22 +8,19 @@ import UserLinks from './UserLinks';
 const Navbar = () => {
   const user = false;
   return (
-    <div className='h-12 md:h-24 text-red-500 p-4
+    <div className='h-12 md:h-20 text-black p-4
     flex justify-between items-center
-    border-b-2 border-b-red-500 uppercase 
+     uppercase 
     lg:px-20 xl:px-40' >
-      {/* RIGHT LINKS */}
-      <div className='hidden md:flex gap-4 flex-1' >
-        <Link href="/" >HomePage</Link>
-        <Link href="/menu" >Menu</Link>
-        <Link href="/" >Contact</Link>
+      <div className=' w-12 h-12 md:w-20 md:h-20 ' >
+        <Image src="/logo.jpg" alt='' width={80} height={80} /> 
       </div>
       {/*LOGO*/}
-      <div className='text-xl md:font-bold flex-1 md:text-center' >
+      {/* <div className='text-xl md:font-bold flex-1 md:text-center' >
       <Link href="/" >
-          SUTET COFFEE
-        </Link>
-      </div>
+      SUTET COFFEE
+      </Link>
+    </div> */}
       {/* MOBILE MENU*/}
       <div className='md:hidden' >
         <Menu />
@@ -32,8 +29,11 @@ const Navbar = () => {
       <div className='hidden md:flex gap-4 items-center flex-1
       justify-end
       ' >
+        <Link href="/" >HomePage</Link>
+        <Link href="/menu" >Menu</Link>
         <UserLinks />
-        <Carticon />
+        <Link href="/aboutus" >About Us</Link>
+        {/* <Carticon /> */}
       </div>
     </div>
   )

@@ -7,23 +7,23 @@ const Notification = () => {
   if(session.status === "authenticated"){
     return(
       <div>
-        <div className='h-12 bg-red-500 text-white px-4 py-1 flex 
+        <div className='h-12 bg-[#04979e] text-white px-4 py-1 flex 
         items-center text-center text-sm 
         md:text-base cursor-pointer justify-between'
         >
           <span>Hello, {session.data.user?.name}</span>
           <span>
-            50% ON SUNDAY
+            The more you order, The more discount you will get
           </span>
         </div>
       </div>
     )
   }
   return (
-    <div className='h-12 bg-red-500 text-white px-4 py-1 flex 
+    <div className='h-12 bg-[#04979e] text-white px-4 py-1 flex 
     items-center justify-center text-center text-sm 
     md:text-base cursor-pointer'
-    >50% ON SUNDAY</div>
+    >The more you order, the more discount you will get</div>
   )
 }
 

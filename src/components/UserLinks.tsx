@@ -12,6 +12,7 @@ const UserLinks = () => {
         {status === "authenticated"
         ? 
         <div>
+          <Link href='/cart' className='flex items-center gap-4' >Cart</Link>
             <Link className='cursor-pointer' href="/orders" >Orders</Link> 
             <span className='ml-1 cursor-pointer' onClick={()=>signOut()}>Log out</span>
         </div>
