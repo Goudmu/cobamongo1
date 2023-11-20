@@ -15,6 +15,7 @@ export type Product = {
   desc?: string;
   img?: string;
   price: number;
+  isFeatured: boolean;
 };
 export type User = {
   _id: number;

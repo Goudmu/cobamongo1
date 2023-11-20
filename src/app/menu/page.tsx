@@ -24,7 +24,7 @@ const MenuPage = () => {
     md-[calc(100vh-9rem)] gap-4 grid grid-row-1 md:grid-cols-2'>
       {menu.map(category => (
         <Link key={category._id} href={`/menu/${category.cat}`} 
-        className='w-full md:h-1/2 bg-cover p-8 rounded-md' 
+        className='w-full bg-cover p-8 rounded-md' 
         style={{backgroundImage:`url(${category.img})`}}
         >
           <div className={`text-${category.color} w-1/2`} >
