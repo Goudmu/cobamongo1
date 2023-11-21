@@ -27,10 +27,10 @@ const Menu = () => {
         {
           !open 
           ?
-            <Image src="/open.png" alt='' width={20} height={20} 
+            <Image src="/opens.png" alt='' width={20} height={20} 
             onClick={() => setOpen(true)} />
           :
-            <Image src="/open.png" alt='' width={20} height={20} 
+            <Image src="/opens.png" alt='' width={20} height={20} 
             onClick={() => setOpen(false)} />
         }
         
@@ -47,6 +47,8 @@ const Menu = () => {
           </Link>
           : 
           <div className='flex flex-col gap-8 items-center text-center justify-center' >
+            <Link href="/cart" onClick={() => setOpen(false)}> Cart
+            </Link>
             <Link href="/orders" onClick={() => setOpen(false)}> Orders
             </Link>
             <button type='button' onClick={() => signOut()} >LOG OUT</button>

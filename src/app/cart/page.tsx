@@ -20,6 +20,7 @@ const CartPage = () => {
   const [cartProducts, setCartProducts] = useState<typeThisProduct[]>([]);
   const [totalPrice, setTotalPrice] = useState(0)
   const [totalQty, setTotalQty] = useState(0)
+  const [isUploading, setIsUploading] = useState(false);
   const session = useSession()
   const router = useRouter()
 
@@ -65,6 +66,7 @@ const CartPage = () => {
   }
 
   const checkOutHandler =async () => {
+    setIsUploading(true)
     await fetch("https://cobamongo1-omega.vercel.app/api/order", {
         method: "POST",
         body: JSON.stringify({
@@ -129,7 +131,7 @@ const CartPage = () => {
         </div>
         <button className='bg-[#04979e] text-white w-1/2 
          p-3 rounded-md
-        self-end' type='button' onClick={checkOutHandler} >
+        self-end disabled:cursor-progress' type='button' onClick={checkOutHandler} disabled={isUploading} >
           Check Out
         </button>
       </div>
