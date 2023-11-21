@@ -183,7 +183,7 @@ const Dashboard = () => {
                 {JLisSelected.map((e,index) => (
                     <label className="cursor-pointer" onClick={() => JLHandler(e.name)} key={e.name} >
                         <input type="radio" className="peer sr-only" name="pricing" />
-                        <div className={`w-full rounded-md bg-[#F1F1F1] p-1 text-gray-600 ring-2 ring-transparent transition-all hover:shadow ${JLisSelected[index].selected == true ? " text-cyan-500 ring-gray-600 ring-offset-2" : ""} `}>
+                        <div className={`w-full rounded-md bg-[#F1F1F1] p-1 ring-2  transition-all hover:shadow ${JLisSelected[index].selected == true ? " text-cyan-500 ring-gray-600 ring-offset-2" : "ring-transparent text-gray-600" } `}>
                         <div className="flex flex-col gap-1">
                             <div className="flex items-center justify-between">
                             <p className="text-xs font-semibold uppercase text-gray-500">{e.desc}</p>
@@ -204,7 +204,7 @@ const Dashboard = () => {
                 {bulanisSelected.map((e, index) => (
                     <label className="cursor-pointer" onClick={() => bulanHandler(e.name)} key={index} >
                     <input type="radio" className="peer sr-only" name="pricing" />
-                    <div className={`w-full rounded-md bg-[#F1F1F1] p-1 text-gray-600 ring-2 ring-transparent transition-all hover:shadow ${bulanisSelected[index].selected == true ? "text-cyan-500 ring-gray-600 ring-offset-2" : ""}`}>
+                    <div className={`w-full rounded-md bg-[#F1F1F1] p-1 ring-2 transition-all hover:shadow ${bulanisSelected[index].selected == true ? "text-cyan-500 ring-gray-600 ring-offset-2" : "ring-transparent text-gray-600"}`}>
                         <div className="flex flex-col gap-1">
                         <div className="flex items-center justify-between">
                             <p className="text-xs font-semibold uppercase text-gray-500">{e.name}</p>
@@ -226,7 +226,7 @@ const Dashboard = () => {
                 {tahunisSelected.map((e,index) => (
                     <label className="cursor-pointer" onClick={() => tahunHandler(e.name)} key={index} >
                     <input type="radio" className="peer sr-only" name="pricing" />
-                    <div className={`w-full rounded-md bg-[#F1F1F1] p-1 text-gray-600 ring-2 ring-transparent transition-all hover:shadow ${tahunisSelected[index].selected == true ? "text-cyan-500 ring-gray-600 ring-offset-2" : ""} `}>
+                    <div className={`w-full rounded-md bg-[#F1F1F1] p-1 ring-2 transition-all hover:shadow ${tahunisSelected[index].selected == true ? "text-cyan-500 ring-gray-600 ring-offset-2" : "ring-transparent text-gray-600"} `}>
                         <div className="flex flex-col gap-1">
                         <div className="flex items-center justify-between">
                             <p className="text-xs font-semibold uppercase text-gray-500">{e.name}</p>
