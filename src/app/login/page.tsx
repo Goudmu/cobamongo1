@@ -25,7 +25,6 @@ const LoginPage = () => {
         cache: "no-store"
       }).then(res => res.json())
       .then(async (data) => {
-        console.log(data)
         if(session.data != undefined){
           if(data.userss.length == 0){
             if(alreadyFetch == false){
