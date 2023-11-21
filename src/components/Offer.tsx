@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import CountDown from './CountDown'
+import Link from 'next/link'
 
 const Offer = () => {
   return (
@@ -13,7 +14,8 @@ const Offer = () => {
           this sweater is designed to keep you warm while making a fashion statement.
         </p>
         <CountDown />
-        <button className='bg-[#04979e] text-white rounded-md py-3 px-6 hover:bg-white hover:text-[#04979e]' >Order Now</button>
+        <Link className='bg-[#04979e] text-white rounded-md py-3 px-6 hover:bg-white hover:text-[#04979e]' href="/product/655c2956b48402e180879152" >Order Now</Link>
+        {/* <button className='bg-[#04979e] text-white rounded-md py-3 px-6 hover:bg-white hover:text-[#04979e]' >Order Now</button> */}
       </div>
       {/* IMAGE CONTAINER */}
       <div className='flex-1 w-full relative md:h-full bg-[#F1F1F1]' >

@@ -88,7 +88,7 @@ const AddPage = () => {
 
     try {
       await uploadImage().then(async () => {
-        const res = await fetch("http://localhost:3000/api/products2", {
+        const res = await fetch("https://cobamongo1-omega.vercel.app/api/products2", {
           method: "POST",
           body: JSON.stringify({
             img: links,
