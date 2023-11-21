@@ -20,10 +20,6 @@ const Laporan = () => {
 
   const params = useParams()
 
-//   useEffect(()=> {
-//     LPHandler()
-//   },[])
-
   useEffect(() => {
     setBulan(params.id.toString().split("-")[1])
     setTahun(params.id.toString().split("-")[0])
