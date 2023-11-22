@@ -126,8 +126,8 @@ const Orders = () => {
     )
   } else{
     return (
-      <div className="p-5 bg-gray-100" >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+      <div className="p-5 bg-gray-100 min-h-[calc(100vh-15rem)]" >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {
             orders.map((item: typeThisOrder) => {
               if(item.gmail == session.data?.user?.email){
@@ -136,36 +136,47 @@ const Orders = () => {
                     <div className="flex items-center space-x-2 text-sm" >
                       <div className="text-blue-500 font-bold">{item._id}</div>
                       <div className="text-gray-500" >{item.createdAt.toString().slice(0,10)}</div>
-                      <div className={`p-2 text-xs font-medium uppercase 
-                      ${item.status == "Done" ? "tracking-widertext-green-800 bg bg-green-200":
-                      item.status == "On Going..." ? "tracking-widertext-yellow-800 bg bg-yellow-200"
-                      : "tracking-widertext-red-800 bg bg-red-200"
-                      } rounded-lg bg-opacity-30`}>{item.status}</div>
                     </div>
-                    <span>{item.gmail}</span>
-                    {
-                      item.productsSchema.map((e, index) => {
-                        if(item.productsSchema.length == 1){
-                          return(
-                            <div className="text-sm text-gray-700" key={e._id} >{e.title}</div>
-                          )
-                        } else {
-                          let name = "";
-                          for (let indexs = 0; indexs < item.productsSchema.length; indexs++) {
-                            if(indexs == item.productsSchema.length - 1){
-                              name += item.productsSchema[indexs].title
-                            } else{
-                              name += item.productsSchema[indexs].title + ", "
+                    <div>
+                      <span className={`py-1 px-1 w-16 text-xs font-medium uppercase 
+                    ${item.status == "Done" ? "tracking-widertext-green-800 bg bg-green-200":
+                    item.status == "On Going..." ? "tracking-widertext-yellow-800 bg bg-yellow-200"
+                    : "tracking-widertext-red-800 bg bg-red-200"
+                    } rounded-md bg-opacity-30`}>{item.status}</span>
+                    </div>
+                    {/* <div className={`py-1 px-2 w-16 text-xs font-medium uppercase 
+                    ${item.status == "Done" ? "tracking-widertext-green-800 bg bg-green-200":
+                    item.status == "On Going..." ? "tracking-widertext-yellow-800 bg bg-yellow-200"
+                    : "tracking-widertext-red-800 bg bg-red-200"
+                    } rounded-lg bg-opacity-30`}>{item.status}</div> */}
+                    <div>
+                      <span>{item.gmail}</span>
+                    </div>
+                    <div>
+                      {
+                        item.productsSchema.map((e, index) => {
+                          if(item.productsSchema.length == 1){
+                            return(
+                              <span className="text-sm text-gray-700" key={e._id} >{e.title}</span>
+                            )
+                          } else {
+                            let name = "";
+                            for (let indexs = 0; indexs < item.productsSchema.length; indexs++) {
+                              if(indexs == item.productsSchema.length - 1){
+                                name += item.productsSchema[indexs].title
+                              } else{
+                                name += item.productsSchema[indexs].title + ", "
+                              }
+                            }
+                            if (index == item.productsSchema.length - 1) {
+                              return(
+                                <span className="text-sm text-gray-700" key={e._id} >{name}</span>
+                              )
                             }
                           }
-                          if (index == item.productsSchema.length - 1) {
-                            return(
-                              <div className="text-sm text-gray-700" key={e._id} >{name}</div>
-                            )
-                          }
-                        }
-                      })
-                    }
+                        })
+                      }
+                    </div>
                     <div className="text-sm font-medium text-black" >Total Price : ${item.totalPrice}</div>
                   </div>
                 )
