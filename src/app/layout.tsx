@@ -9,6 +9,9 @@ import { EdgeStoreProvider } from './lib/edgestore'
 import AuthLoading from '@/components/AuthLoading'
 import { ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
+import Image from 'next/image'
+import Link from 'next/link'
+import CartIconFloat from '@/components/CartIconFloat'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -31,6 +34,7 @@ export default function RootLayout({
               <Notification />
               <Navbar />
               {children}
+              <CartIconFloat/>
               <Footer />
               <ToastContainer position='bottom-right' theme='dark' autoClose={1500} />
             </AuthLoading>

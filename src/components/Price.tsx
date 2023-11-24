@@ -76,7 +76,9 @@ const Price = ({ product }: { product: Product }) => {
                             gmail: session.data?.user?.email,
                             productsSchema: newCarts
                         })
-                    }).then(() => toast.success("The Product has been added"))
+                    }).then(() => {
+                        toast.success("The Product has been added")
+                    })
                 } else {
                     fetch("https://cobamongo1-omega.vercel.app/api/cart", {
                         method: "POST",
@@ -84,7 +86,9 @@ const Price = ({ product }: { product: Product }) => {
                             gmail: session.data?.user?.email,
                             productsSchema: thisProduct
                         })
-                    }).then(() => toast.success("The Product has been added"))
+                    }).then(() => {
+                        toast.success("The Product has been added")
+                    })
                 }
             })
         }

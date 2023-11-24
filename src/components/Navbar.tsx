@@ -12,7 +12,14 @@ const Navbar = () => {
      uppercase 
     lg:px-10 xl:px-20' >
       <div className=' h-12 md:w-20 md:h-20 flex justify-start items-center w-1/3  ' >
-        <Image src="/logo.jpg" alt='' width={80} height={80} objectFit='cover' /> 
+        <Link href="/" >
+          <Image src="/logo.jpg" alt='' width={80} height={80}
+            style={{
+              width: 70,
+              height: 45
+            }} 
+            /> 
+        </Link>
       </div>
       {/* MOBILE MENU*/}
       <div className='md:hidden' >

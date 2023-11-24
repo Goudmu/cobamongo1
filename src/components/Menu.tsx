@@ -49,6 +49,7 @@ const Menu = () => {
           <div className='flex flex-col gap-8 items-center text-center justify-center' >
             <Link href="/cart" onClick={() => setOpen(false)}> Cart
             </Link>
+            {/* <Carticon /> */}
             <Link href="/orders" onClick={() => setOpen(false)}> Orders
             </Link>
             <button type='button' onClick={() => signOut()} >LOG OUT</button>

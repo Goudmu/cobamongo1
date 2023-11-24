@@ -4,6 +4,7 @@ import Link from 'next/link'
 import {useState, useEffect} from 'react'
 import {useSession, signOut} from "next-auth/react";
 import { User } from '@/types/type';
+import Carticon from './Carticon';
 
 const UserLinks = () => {
     const session = useSession();
@@ -30,7 +31,8 @@ const UserLinks = () => {
         {session.status === "authenticated"
         ? 
         <div >
-          <Link href='/cart' className='items-center gap-4 md:transform md:transition md:duration-500 hover:text-[#04979e]'  >Cart</Link>
+          <Carticon />
+          {/* <Link href='/cart' className='items-center gap-4 md:transform md:transition md:duration-500 hover:text-[#04979e]'  >Cart</Link> */}
           <Link className='items-center gap-4 mx-4 md:transform md:transition md:duration-500 hover:text-[#04979e]' href="/orders" >Orders</Link> 
           <span className='cursor-pointer md:transform md:transition md:duration-500 hover:text-[#04979e]' onClick={()=>signOut()}>Log out</span>
           {isAdmin && (
