@@ -16,8 +16,8 @@ import CartIconFloat from '@/components/CartIconFloat'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'RESTAURANT',
-  description: 'BEST FOOD',
+  title: 'KONVEKSI',
+  description: 'VENDOR PRODUK JAHIT',
 }
 
 export default function RootLayout({
